@@ -1,4 +1,4 @@
-"""INIT for common"""
+"""Common code"""
 from .discord_common import make_embed, error_embed
 from .database import build_database_url
 from .make_logger import make_logger

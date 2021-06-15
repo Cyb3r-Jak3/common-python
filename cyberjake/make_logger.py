@@ -6,16 +6,13 @@ def make_logger(name: str, log_level: str = "INFO") -> logging.Logger:
     """
     Creates a logger class that handles stream and file output
 
-    Function does not have any dependencies
-
     :param name: Name of logger
     :type name: str
     :param log_level: Logging level. Valid strings are 'DEBUG', 'INFO', 'WARNING',
             'ERROR', 'CRITICAL'
-    :type log_level: st
+    :type log_level: str
     :return: Logger class that handled the logging.
     :rtype: logging.Logger
-
     """
     logger = logging.getLogger(name)
     logger.setLevel(log_level)

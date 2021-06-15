@@ -26,7 +26,7 @@ def test_database_URL():
 
 
 def test_unsupported_protocol():
-    with pytest.raises(ValueError):
+    with pytest.raises(NotImplementedError):
         cyberjake.build_database_url("fake")
 
 

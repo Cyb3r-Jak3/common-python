@@ -4,13 +4,17 @@ import os
 
 def build_database_url(protocol: str) -> str:
     """
-    Build Database URL
 
-    builds a database url from environment variables
+    Builds a database url from environment variables
+
+    Environment variable used: *DATABASE_USER*, *DATABASE_PASSWORD*, *DATABASE_HOST*, \
+        *DATABASE_PORT*, *DATABASE_DATABASE*
+
+    :raises NotImplementedError: Raised if using an unsupported protocol
 
     :param protocol: The database protocol to use.
         Currently *mysql* and *postgres* are supported
-
+    :type protocol: str
     :return: Database URL
     :rtype: str
     """
@@ -33,7 +37,7 @@ def build_database_url(protocol: str) -> str:
         },
     }
     if protocol not in defaults:
-        raise ValueError(f"Protocol {protocol} is not supported")
+        raise NotImplementedError(f"Protocol {protocol} is not supported")
     required_options = [
         "DATABASE_USER",
         "DATABASE_PASSWORD",

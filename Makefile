@@ -1,4 +1,4 @@
-.PHONY: clean clean-build clean-pyc test check-dist lint
+.PHONY: clean clean-build clean-pyc test check-dist lint docs
 
 clean: clean-build clean-pyc
 
@@ -42,3 +42,8 @@ test:
 
 reformat:
 	black --line-length 100 ./cyberjake
+
+docs:
+	sphinx-apidoc -f -o docs/ cyberjake
+	$(MAKE) -C docs clean
+	$(MAKE) -C docs html
