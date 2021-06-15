@@ -37,6 +37,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           draft: True
+          fail_on_unmatched_files: True
           files: |
             ${{ env.SDIST_PATH}}
             ${{ env.WHEEL_PATH}}
