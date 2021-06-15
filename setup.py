@@ -24,7 +24,7 @@ setup(
             "cyberjake"
         ],
         package_dir={"cyberjake": "cyberjake"},
-        tests_require=test_reqs,
+        tests_require=test_reqs[1:],
         install_requires=install_reqs,
         license="MPL 2.0",
         zip_safe=False,
