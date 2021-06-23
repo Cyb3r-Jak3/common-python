@@ -6,4 +6,11 @@ from .check_update import check_update
 
 __version__ = "0.0.2"
 
-__all__ = ["__version__", "make_logger", "make_embed", "error_embed", "build_database_url", "check_update"]
+__all__ = [
+    "__version__",
+    "make_logger",
+    "make_embed",
+    "error_embed",
+    "build_database_url",
+    "check_update",
+]
