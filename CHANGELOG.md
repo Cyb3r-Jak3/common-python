@@ -14,6 +14,14 @@
 ### Removed
 -->
 
+[v0.0.2]
+---
+
+### Added
+
+- Check update function
+
+
 [v0.0.1]
 ---
 
