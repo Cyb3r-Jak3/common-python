@@ -57,7 +57,7 @@ async def make_embed(
     :return: Filled out embed if send is False
     """
     if not DISCORD_PRESENT:
-        raise ModuleNotFoundError("Need discord.py module needed")
+        raise ModuleNotFoundError("Need discord.py module installed")
     if not color:
         kwargs["color"] = int("0x%06x" % random.randint(0, 0xFFFFFF), 16)  # nosec
     elif isinstance(color, str):

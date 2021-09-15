@@ -3,9 +3,7 @@ import os
 
 
 def build_database_url(protocol: str) -> str:
-    """
-
-    Builds a database url from environment variables
+    """Builds a database url from environment variables
 
     Environment variable used: *DATABASE_USER*, *DATABASE_PASSWORD*, *DATABASE_HOST*, \
         *DATABASE_PORT*, *DATABASE_DATABASE*
