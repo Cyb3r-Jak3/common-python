@@ -3,8 +3,7 @@ import logging
 
 
 def make_logger(name: str, log_level: str = "INFO") -> logging.Logger:
-    """
-    Creates a logger class that handles stream and file output
+    """Creates a logger class that handles stream and file output
 
     :param name: Name of logger
     :type name: str
