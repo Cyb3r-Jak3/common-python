@@ -18,7 +18,7 @@ def make_logger(name: str, log_level: str = "INFO") -> logging.Logger:
     formatter = logging.Formatter(
         "%(levelname)s - %(name)s - %(asctime)s - %(message)s", "%Y-%m-%d %H:%M:%S"
     )
-    file_output = logging.FileHandler("{}.log".format(name), mode="w")
+    file_output = logging.FileHandler(f"{name}.log", mode="w")
     file_output.setFormatter(formatter)
     logger.addHandler(file_output)
     stream_output = logging.StreamHandler()
