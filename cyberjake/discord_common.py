@@ -59,7 +59,7 @@ async def make_embed(
     if not DISCORD_PRESENT:
         raise ModuleNotFoundError("Need discord.py module installed")
     if not color:
-        kwargs["color"] = int(f"0x{random.randint(0, 0xFFFFFF)}", 16)  # nosec
+        kwargs["color"] = random.randint(0, 16777215)  # nosec
     elif isinstance(color, str):
         kwargs["color"] = discord.Color(int(color, 16))
 
