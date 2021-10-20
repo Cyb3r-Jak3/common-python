@@ -5,7 +5,7 @@ from .discord_common import error_embed
 from .discord_common import make_embed
 from .make_logger import make_logger
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 __all__ = [
     "__version__",
