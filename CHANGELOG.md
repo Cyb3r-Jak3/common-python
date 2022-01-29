@@ -14,6 +14,15 @@
 ### Removed
 -->
 
+
+[v0.0.5]
+---
+
+### Added
+
+- remove bom feature
+
+
 [v0.0.2]
 ---
 
