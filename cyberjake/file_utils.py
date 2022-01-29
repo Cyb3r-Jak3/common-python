@@ -1,4 +1,4 @@
-
+"""utils for file handling"""
 import os
 import codecs
 
@@ -11,16 +11,16 @@ def remove_bom_inplace(path: str):
     buffer_size = 4096
     bom_length = len(codecs.BOM_UTF8)
 
-    with open(path, "rb") as fp:
-        chunk = fp.read(buffer_size)
+    with open(path, "rb") as input_file:
+        chunk = input_file.read(buffer_size)
         if chunk.startswith(codecs.BOM_UTF8):
             i = 0
             chunk = chunk[bom_length:]
             while chunk:
-                fp.seek(i)
-                fp.write(chunk)
+                input_file.seek(i)
+                input_file.write(chunk)
                 i += len(chunk)
-                fp.seek(bom_length, os.SEEK_CUR)
-                chunk = fp.read(buffer_size)
-            fp.seek(-bom_length, os.SEEK_CUR)
-            fp.truncate()
+                input_file.seek(bom_length, os.SEEK_CUR)
+                chunk = input_file.read(buffer_size)
+            input_file.seek(-bom_length, os.SEEK_CUR)
+            input_file.truncate()

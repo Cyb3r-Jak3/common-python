@@ -15,5 +15,5 @@ __all__ = [
     "error_embed",
     "build_database_url",
     "check_update",
-    "remove_bom_inplace"
+    "remove_bom_inplace",
 ]
