@@ -1,13 +1,12 @@
-from __future__ import annotations
 
 import os
 import codecs
 
 
-def remove_bom_inplace(path: str | bytes | os.PathLike[str] | os.PathLike[bytes] | int):
+def remove_bom_inplace(path: str):
     """
-    Removes BOM mark, if it exists, from a file and rewrites it in-place
-    :param path: Path to the file
+    Removes BOM mark, if it exists, from a file and rewrites it in-place.
+    :param path: Path to the file. Works with anything to use for open()
     """
     buffer_size = 4096
     bom_length = len(codecs.BOM_UTF8)
