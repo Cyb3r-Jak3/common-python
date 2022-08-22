@@ -1,5 +1,5 @@
 """Script to check for available updates."""
-from distutils.version import LooseVersion
+from packaging.version import Version
 import json
 
 try:
@@ -24,9 +24,10 @@ def check_update(project_name: str, current_version: str) -> bool:
         raise ModuleNotFoundError("Requests module needed")
 
     try:
-        latest = LooseVersion(
+        latest = Version(
             requests.get(f"https://pypi.org/pypi/{project_name}/json").json()["info"]["version"]
         )
     except json.decoder.JSONDecodeError:
         return False
+    current_version = Version(current_version)
     return latest > current_version
