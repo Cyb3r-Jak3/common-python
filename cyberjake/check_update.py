@@ -1,6 +1,7 @@
 """Script to check for available updates."""
-from packaging.version import Version
 import json
+
+from packaging.version import Version
 
 try:
     import requests
