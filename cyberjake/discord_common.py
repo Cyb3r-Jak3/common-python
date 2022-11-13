@@ -7,15 +7,14 @@ from ._utils import _check_required_modules, _INSTALLED_MODULES
 try:
     import discord
     from discord.ext import commands
+
     _INSTALLED_MODULES["discord.py"] = True
 except ModuleNotFoundError:
     pass
 
 
 @_check_required_modules("discord.py")
-async def error_embed(
-    ctx: commands.Context, message: str, title: str = "Error:", **kwargs
-):
+async def error_embed(ctx: commands.Context, message: str, title: str = "Error:", **kwargs):
     """
     Makes and send an error embed
 
@@ -99,9 +98,7 @@ async def error_message(
 
 
 @_check_required_modules("discord.py")
-async def list_message(
-    ctx: commands.Context, message: list, title: str, **kwargs
-) -> None:
+async def list_message(ctx: commands.Context, message: list, title: str, **kwargs) -> None:
     """List Message
 
     Breaks up messages that contain a list and sends the parts of them. Shared function between
