@@ -15,6 +15,21 @@
 -->
 
 
+[v0.0.6]
+---
+
+### Added
+
+- More functions to discord.py
+- Tests for python 3.11
+
+### Changed
+
+- Changed to using wrapper for checking for modules installed.
+
+### Removed
+
+
 [v0.0.5]
 ---
 

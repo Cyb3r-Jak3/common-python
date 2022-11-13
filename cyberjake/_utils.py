@@ -1,7 +1,7 @@
 """ Internal Utility functions"""
 from functools import wraps
 
-_INSTALLED_MODULES = {"discord.py": False, "requests": False}
+_INSTALLED_MODULES = {"discord.py": False, "requests": False, "packaging": False}
 
 
 def _check_required_modules(module_name: str):
