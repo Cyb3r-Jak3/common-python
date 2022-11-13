@@ -46,7 +46,7 @@ def build_database_url(protocol: str) -> str:
 
     results_dict = {}
     for option in required_options:
-        results_dict[option] = os.environ.get(option, defaults[protocol][option])
+        results_dict[option] = os.getenv(option, defaults[protocol][option])
 
     return (
         f"{protocol}://{results_dict['DATABASE_USER']}:"
