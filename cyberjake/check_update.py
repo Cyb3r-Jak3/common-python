@@ -26,7 +26,9 @@ def check_update(project_name: str, current_version: str) -> bool:
 
     try:
         latest = Version(
-            requests.get(f"https://pypi.org/pypi/{project_name}/json").json()["info"]["version"]
+            requests.get(f"https://pypi.org/pypi/{project_name}/json", timeout=10).json()["info"][
+                "version"
+            ],
         )
     except json.decoder.JSONDecodeError:
         return False

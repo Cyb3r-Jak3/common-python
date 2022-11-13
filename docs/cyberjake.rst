@@ -4,6 +4,14 @@ cyberjake package
 Submodules
 ----------
 
+cyberjake.check\_update module
+------------------------------
+
+.. automodule:: cyberjake.check_update
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 cyberjake.database module
 -------------------------
 
@@ -16,6 +24,14 @@ cyberjake.discord\_common module
 --------------------------------
 
 .. automodule:: cyberjake.discord_common
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+cyberjake.file\_utils module
+----------------------------
+
+.. automodule:: cyberjake.file_utils
    :members:
    :undoc-members:
    :show-inheritance:

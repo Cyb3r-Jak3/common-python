@@ -1,4 +1,4 @@
-.PHONY: clean clean-build clean-pyc test check-dist lint docs
+.PHONY: clean clean-build clean-pyc test check-dist lint format docs
 
 clean: clean-build clean-pyc
 
@@ -32,7 +32,7 @@ check-dist:
 	twine check --strict dist/*
 
 lint:
-	black --line-length 100 --check cyberjake
+	black --line-length 100 --target-version py310 --check cyberjake
 	pylint cyberjake
 	flake8 --max-line-length 100 --statistics --show-source --count cyberjake
 	bandit -r cyberjake
@@ -40,8 +40,8 @@ lint:
 test:
 	py.test --cov cyberjake tests/ -vv
 
-reformat:
-	black --line-length 100 ./cyberjake
+format:
+	black --line-length 100 --target-version py310 cyberjake
 
 docs:
 	sphinx-apidoc -f -o docs/ cyberjake

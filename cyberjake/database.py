@@ -11,7 +11,7 @@ def build_database_url(protocol: str) -> str:
     :raises NotImplementedError: Raised if using an unsupported protocol
 
     :param protocol: The database protocol to use.
-        Currently *mysql* and *postgres* are supported
+        Currently, *mysql* and *postgres* are supported
     :type protocol: str
     :return: Database URL
     :rtype: str

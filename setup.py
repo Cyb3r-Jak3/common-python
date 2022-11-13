@@ -13,13 +13,13 @@ setup(
         long_description=readme,
         long_description_content_type="text/markdown",
         author="Cyber_Jake",
-        author_email="jake@jwhite.network",
+        author_email="git@cyberjake.xyz",
         url="https://github.com/Cyb3r-Jak3/common-python",
         project_urls={
             "Changelog": "https://github.com/Cyb3r-Jak3/common-python/blob/main/CHANGELOG.md",
             "Issues": "https://github.com/Cyb3r-Jak3/common-python/issues"
         },
-        download_url="https://github.com/Cyb3r-Jak3/common/releases/latest",
+        download_url="https://github.com/Cyb3r-Jak3/common-python/releases/latest",
         packages=[
             "cyberjake"
         ],
@@ -36,10 +36,9 @@ setup(
             "Natural Language :: English",
             "Programming Language :: Python :: 3 :: Only",
             "Programming Language :: Python :: 3",
-            "Programming Language :: Python :: 3.6",
-            "Programming Language :: Python :: 3.7",
             "Programming Language :: Python :: 3.8",
             "Programming Language :: Python :: 3.9",
+            "Programming Language :: Python :: 3.10",
             "Programming Language :: Python :: Implementation :: CPython"
         ],
 )

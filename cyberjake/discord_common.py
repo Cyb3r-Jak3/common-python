@@ -1,17 +1,21 @@
 """Common code for discord bots"""
 import random
 import typing
+from ._utils import _check_required_modules, _INSTALLED_MODULES
 
 # Used to all for no discord uses of common
 try:
     import discord
-
-    DISCORD_PRESENT = True
+    from discord.ext import commands
+    _INSTALLED_MODULES["discord.py"] = True
 except ModuleNotFoundError:
-    DISCORD_PRESENT = False
+    pass
 
 
-async def error_embed(ctx, message: str, title: str = "Error:", **kwargs):
+@_check_required_modules("discord.py")
+async def error_embed(
+    ctx: commands.Context, message: str, title: str = "Error:", **kwargs
+):
     """
     Makes and send an error embed
 
@@ -29,18 +33,19 @@ async def error_embed(ctx, message: str, title: str = "Error:", **kwargs):
     :param title: Error message title
     :type title: str
     """
-    if not DISCORD_PRESENT:
-        raise ModuleNotFoundError("Need discord.py module installed")
     await make_embed(ctx, color="FF0000", send=True, description=message, title=title, **kwargs)
 
 
+@_check_required_modules("discord.py")
 async def make_embed(
-    ctx: discord.commands.Context, color: typing.Union[str, int] = None, send: typing.Union[bool, str] = True, **kwargs
+    ctx: commands.Context,
+    color: typing.Union[str, int] = None,
+    send: typing.Union[bool, str] = True,
+    **kwargs,
 ) -> typing.Optional["discord.Embed"]:
     """
     Makes and defaults to sending a discord.Embed
 
-    
 
     **Asynchronous Function**
 
@@ -56,8 +61,7 @@ async def make_embed(
     :param kwargs: Keyword arguments to pass to embed
     :return: Filled out embed if send is False
     """
-    if not DISCORD_PRESENT:
-        raise ModuleNotFoundError("Need discord.py module installed")
+
     if not color:
         kwargs["color"] = random.randint(0, 16777215)  # nosec
     elif isinstance(color, str):
@@ -74,10 +78,13 @@ async def make_embed(
         return embed
 
 
-async def error_message(ctx, message: str, title: str = "Error:", **kwargs) -> None:
+@_check_required_modules("discord.py")
+async def error_message(
+    ctx: commands.Context, message: str, title: str = "Error:", **kwargs
+) -> None:
     """Error Message
     Generate an error embed
-    
+
     **Requires discord.py**
 
     **Asynchronous Function**
@@ -91,7 +98,10 @@ async def error_message(ctx, message: str, title: str = "Error:", **kwargs) -> N
     await make_embed(ctx, "FF0000", True, description=message, title=title, **kwargs)
 
 
-async def list_message(ctx: discord.commands.Context, message: list, title: str, **kwargs) -> None:
+@_check_required_modules("discord.py")
+async def list_message(
+    ctx: commands.Context, message: list, title: str, **kwargs
+) -> None:
     """List Message
 
     Breaks up messages that contain a list and sends the parts of them. Shared function between
