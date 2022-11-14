@@ -1,9 +1,10 @@
 """utils for file handling"""
 import os
 import codecs
+from typing import Union
 
 
-def remove_bom_inplace(path: str):
+def remove_bom_inplace(path: Union[str, os.PathLike, bytes]) -> None:
     """
     Removes BOM mark, if it exists, from a file and rewrites it in-place.
     :param path: Path to the file. Works with anything to use for open()
