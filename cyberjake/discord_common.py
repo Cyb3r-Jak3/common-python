@@ -3,7 +3,6 @@ import random
 import typing
 from ._utils import _check_required_modules, _INSTALLED_MODULES
 
-# Used to all for no discord uses of common
 try:
     import discord
     from discord.ext import commands
@@ -14,7 +13,7 @@ except ModuleNotFoundError:
 
 
 @_check_required_modules("discord.py")
-async def error_embed(ctx: commands.Context, message: str, title: str = "Error:", **kwargs):
+async def error_embed(ctx: "commands.Context", message: str, title: str = "Error:", **kwargs):
     """
     Makes and send an error embed
 
@@ -37,7 +36,7 @@ async def error_embed(ctx: commands.Context, message: str, title: str = "Error:"
 
 @_check_required_modules("discord.py")
 async def make_embed(
-    ctx: commands.Context,
+    ctx: "commands.Context",
     color: typing.Union[str, int] = None,
     send: typing.Union[bool, str] = True,
     **kwargs,
@@ -79,7 +78,7 @@ async def make_embed(
 
 @_check_required_modules("discord.py")
 async def error_message(
-    ctx: commands.Context, message: str, title: str = "Error:", **kwargs
+    ctx: "commands.Context", message: str, title: str = "Error:", **kwargs
 ) -> None:
     """Error Message
     Generate an error embed
@@ -98,7 +97,7 @@ async def error_message(
 
 
 @_check_required_modules("discord.py")
-async def list_message(ctx: commands.Context, message: list, title: str, **kwargs) -> None:
+async def list_message(ctx: "commands.Context", message: list, title: str, **kwargs) -> None:
     """List Message
 
     Breaks up messages that contain a list and sends the parts of them. Shared function between
