@@ -37,8 +37,9 @@ async def error_embed(ctx: "commands.Context", message: str, title: str = "Error
 @_check_required_modules("discord.py")
 async def make_embed(
     ctx: "commands.Context",
-    color: typing.Union[str, int] = None,
+    color: typing.Union[str, int, "discord.Color"] = None,
     send: typing.Union[bool, str] = True,
+    as_reply: bool = False,
     **kwargs,
 ) -> typing.Optional["discord.Embed"]:
     """
@@ -53,9 +54,11 @@ async def make_embed(
     :param ctx: Discord context
     :type ctx: discord.ext.commands.Context
     :param color: Color of the embed
-    :type color: [str, int]
+    :type color: [str, int, discord.Color]
     :param send: Send the message instead of returning
     :type send: bool
+    :param as_reply: Reply to the message instead of sending
+    :type as_reply: bool
     :param kwargs: Keyword arguments to pass to embed
     :return: Filled out embed if send is False
     """
@@ -71,7 +74,10 @@ async def make_embed(
     if footer:
         embed.set_footer(text=footer)
     if send:
-        await ctx.send(embed=embed)
+        if as_reply:
+            await ctx.reply(embed=embed)
+        else:
+            await ctx.send(embed=embed)
     else:
         return embed
 
