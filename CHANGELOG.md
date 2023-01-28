@@ -14,6 +14,18 @@
 ### Removed
 -->
 
+[v0.0.7]
+---
+
+### Added
+
+### Changed
+
+- `make_embed` has an option to reply to the message rather than sending as a new message.
+
+### Removed
+
+
 
 [v0.0.6]
 ---

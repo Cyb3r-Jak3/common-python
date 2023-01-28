@@ -5,7 +5,7 @@ from .discord_common import error_embed, make_embed, list_message
 from .make_logger import make_logger
 from .file_utils import remove_bom_inplace
 
-__version__ = "0.0.6"
+__version__ = "0.0.7"
 
 __all__ = [
     "__version__",
