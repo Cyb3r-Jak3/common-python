@@ -14,7 +14,7 @@ except ModuleNotFoundError:
 
 @_check_required_modules("discord.py")
 async def error_embed(
-    ctx: typing.Union["discord.commands.Context", "discord.Interaction"],
+    ctx: typing.Union["commands.Context", "discord.Interaction"],
     message: str,
     title: str = "Error:",
     **kwargs,
@@ -98,7 +98,7 @@ async def make_embed(
 
 @_check_required_modules("discord.py")
 async def error_message(
-    ctx: typing.Union["discord.commands.Context", "discord.Interaction"],
+    ctx: typing.Union["commands.Context", "discord.Interaction"],
     message: str,
     title: str = "Error:",
     **kwargs,
@@ -121,11 +121,11 @@ async def error_message(
 
 @_check_required_modules("discord.py")
 async def list_message(
-    ctx: typing.Union["discord.commands.Context", "discord.Interaction"],
+    ctx: typing.Union["commands.Context", "discord.Interaction"],
     message: list,
     title: str,
     **kwargs,
-) -> typing.Optional[typing.List[discord.Embed]]:
+) -> typing.Optional[typing.List["discord.Embed"]]:
     """List Message
 
     Breaks up messages that contain a list and sends the parts of them. Shared function between
@@ -150,7 +150,7 @@ async def list_message(
     ":rtype: None
     """
     joined_message = len("".join(message))
-    list_of_embeds: typing.List[discord.Embed] = []
+    list_of_embeds: typing.List["discord.Embed"] = []
     part = 1
     item = 0
     amount_of_embeds = len(range(0, joined_message, 1500))
