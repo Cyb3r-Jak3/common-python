@@ -14,6 +14,28 @@
 ### Removed
 -->
 
+[v0.0.9]
+---
+
+### Added
+
+### Changed
+
+- Support using `discord.Interaction` as a context
+
+### Removed
+
+[v0.0.8]
+---
+
+### Added
+
+### Changed
+
+- Fixed classifier
+
+### Removed
+
 [v0.0.7]
 ---
 
@@ -24,7 +46,6 @@
 - `make_embed` has an option to reply to the message rather than sending as a new message.
 
 ### Removed
-
 
 
 [v0.0.6]

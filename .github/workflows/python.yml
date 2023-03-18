@@ -61,5 +61,13 @@ jobs:
     - name: Test
       run: make test
 
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        env_vars: OS,PYTHON
+      env:
+        OS: ${{ matrix.os }}
+        PYTHON: ${{ matrix.python-version }}
+
     - name: Build
       run: make check-dist
