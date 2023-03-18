@@ -14,6 +14,19 @@
 ### Removed
 -->
 
+[v0.1.0]
+---
+
+### Added
+
+- `str2bool` function
+
+### Changed
+
+- Bumps to minor version to use semver better
+
+### Removed
+
 [v0.0.9]
 ---
 

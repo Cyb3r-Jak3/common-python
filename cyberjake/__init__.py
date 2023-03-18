@@ -6,7 +6,7 @@ from .make_logger import make_logger
 from .file_utils import remove_bom_inplace
 from .text_utils import str2bool
 
-__version__ = "0.0.9.post1"
+__version__ = "0.1.0"
 
 __all__ = [
     "__version__",
