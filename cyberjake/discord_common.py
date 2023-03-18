@@ -13,7 +13,12 @@ except ModuleNotFoundError:
 
 
 @_check_required_modules("discord.py")
-async def error_embed(ctx: "commands.Context", message: str, title: str = "Error:", **kwargs):
+async def error_embed(
+    ctx: typing.Union["discord.commands.Context", "discord.Interaction"],
+    message: str,
+    title: str = "Error:",
+    **kwargs,
+):
     """
     Makes and send an error embed
 
@@ -31,12 +36,19 @@ async def error_embed(ctx: "commands.Context", message: str, title: str = "Error
     :param title: Error message title
     :type title: str
     """
-    await make_embed(ctx, color="FF0000", send=True, description=message, title=title, **kwargs)
+    await make_embed(
+        ctx,
+        color="FF0000",
+        send=isinstance(ctx, commands.Context),
+        description=message,
+        title=title,
+        **kwargs,
+    )
 
 
 @_check_required_modules("discord.py")
 async def make_embed(
-    ctx: "commands.Context",
+    ctx: typing.Union["discord.commands.Context", "discord.Interaction"],
     color: typing.Union[str, int, "discord.Color"] = None,
     send: typing.Union[bool, str] = True,
     as_reply: bool = False,
@@ -51,8 +63,8 @@ async def make_embed(
     :raises ModuleNotFoundError: Will raise a ModuleNotFoundError if discord.py module \
     is not installed
 
-    :param ctx: Discord context
-    :type ctx: discord.ext.commands.Context
+    :param ctx: Discord context or interaction
+    :type ctx: discord.ext.commands.Context | discord.Interaction
     :param color: Color of the embed
     :type color: [str, int, discord.Color]
     :param send: Send the message instead of returning
@@ -63,6 +75,8 @@ async def make_embed(
     :return: Filled out embed if send is False
     """
 
+    if send and isinstance(ctx, discord.Interaction):
+        raise NotImplementedError("Can not have send with an interaction context")
     if not color:
         kwargs["color"] = random.randint(0, 16777215)  # nosec
     elif isinstance(color, str):
@@ -84,7 +98,10 @@ async def make_embed(
 
 @_check_required_modules("discord.py")
 async def error_message(
-    ctx: "commands.Context", message: str, title: str = "Error:", **kwargs
+    ctx: typing.Union["discord.commands.Context", "discord.Interaction"],
+    message: str,
+    title: str = "Error:",
+    **kwargs,
 ) -> None:
     """Error Message
     Generate an error embed
@@ -99,11 +116,16 @@ async def error_message(
     :param title: Title of error embed
     :param kwargs: Keyword arguments to pass to Embed
     """
-    await make_embed(ctx, "FF0000", True, description=message, title=title, **kwargs)
+    await make_embed(ctx, "FF0000", description=message, title=title, **kwargs)
 
 
 @_check_required_modules("discord.py")
-async def list_message(ctx: "commands.Context", message: list, title: str, **kwargs) -> None:
+async def list_message(
+    ctx: typing.Union["discord.commands.Context", "discord.Interaction"],
+    message: list,
+    title: str,
+    **kwargs,
+) -> typing.Optional[typing.List[discord.Embed]]:
     """List Message
 
     Breaks up messages that contain a list and sends the parts of them. Shared function between
@@ -128,7 +150,7 @@ async def list_message(ctx: "commands.Context", message: list, title: str, **kwa
     ":rtype: None
     """
     joined_message = len("".join(message))
-    list_of_embeds = []
+    list_of_embeds: typing.List[discord.Embed] = []
     part = 1
     item = 0
     amount_of_embeds = len(range(0, joined_message, 1500))
@@ -155,6 +177,9 @@ async def list_message(ctx: "commands.Context", message: list, title: str, **kwa
                 part += 1
         list_of_embeds.append(embed)
 
-    for item in list_of_embeds:
-        if len(item.fields) > 0:
-            await ctx.send(embed=item)
+    if isinstance(ctx, commands.Context):
+        for item in list_of_embeds:
+            if len(item.fields) > 0:
+                await ctx.send(embed=item)
+    else:
+        return list_of_embeds
