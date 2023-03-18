@@ -11,9 +11,11 @@ on:
       - ".github/workflows/python.yml"
       - "requirements.txt"
       - "requirements-dev.txt"
+  pull_request:
 
 jobs:
   Lint:
+    if: github.event_name == 'push'
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -74,7 +76,7 @@ jobs:
 
   Clean-Install:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
+    if: github.event_name == 'pull_request'
     steps:
       - uses: actions/checkout@v3
 
