@@ -1,5 +1,10 @@
+""" text_utils
 
-def str2bool(v: str) -> bool:
+Text utility functions
+"""
+
+
+def str2bool(string: str) -> bool:
     """str2bool Converts strings to booleans
 
     Function to convert strings to booleans.
@@ -10,4 +15,4 @@ def str2bool(v: str) -> bool:
     :return: if converted
     :rtype: bool
     """
-    return v.lower() in {"yes", "y", "true", "t", "1"}
+    return string.lower() in {"yes", "y", "true", "t", "1"}
