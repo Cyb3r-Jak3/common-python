@@ -23,27 +23,26 @@ clean-pyc:
 	find . -name '*~' -exec $(RM) {} +
 
 build:
-	python setup.py sdist bdist_wheel
+	poetry build
 
 check-dist:
 	pip install wheel twine --quiet
-	python setup.py egg_info
-	python setup.py sdist bdist_wheel
+	poetry build
 	twine check --strict dist/*
 
 lint:
-	black --line-length 100 --target-version py310 --check cyberjake
-	pylint cyberjake
-	flake8 --max-line-length 100 --statistics --show-source --count cyberjake
-	bandit -r cyberjake
+	poetry run black --line-length 100 --target-version py310 --check cyberjake
+	poetry run pylint cyberjake
+	poetry run flake8 --max-line-length 100 --statistics --show-source --count cyberjake
+	poetry run bandit -r cyberjake
 
 test:
-	py.test --cov cyberjake tests/ -vv
+	poetry run pytest --cov cyberjake tests/ -vv
 
 format:
-	black --line-length 100 --target-version py310 cyberjake
+	poetry run black --line-length 100 --target-version py310 cyberjake
 
 docs:
-	sphinx-apidoc -f -o docs/ cyberjake
+	poetry run sphinx-apidoc -f -o docs/ cyberjake
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html

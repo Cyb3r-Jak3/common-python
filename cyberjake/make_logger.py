@@ -1,4 +1,5 @@
 """Common log maker"""
+
 import logging
 
 

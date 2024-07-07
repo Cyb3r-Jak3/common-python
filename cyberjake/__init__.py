@@ -1,4 +1,5 @@
 """Common code"""
+
 from .check_update import check_update
 from .database import build_database_url
 from .discord_common import error_embed, make_embed, list_message
@@ -6,7 +7,7 @@ from .make_logger import make_logger
 from .file_utils import remove_bom_inplace
 from .text_utils import str2bool
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
 
 __all__ = [
     "__version__",

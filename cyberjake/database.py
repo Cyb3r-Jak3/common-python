@@ -1,4 +1,5 @@
 """Common for database tools"""
+
 import os
 
 
