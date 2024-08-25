@@ -1,5 +1,5 @@
 [project]
-name = "common-python"
+name = "cyberjake"
 dynamic = ["version"]
 authors = [
     {name = "Cyb3r-Jak3", email = "git@Cyberjake.xyz"}
@@ -29,7 +29,7 @@ repository = "https://github.com/Cyb3r-Jak3/common-python"
 
 
 [tool.poetry]
-name = "common-python"
+name = "cyberjake "
 version = "0.2.0"
 description = "Common Python utilities for Cyb3r-Jak3 projects"
 authors = ["Cyb3r-Jak3"]
