@@ -11,6 +11,7 @@ on:
       - ".github/workflows/python.yml"
       - "pyproject.toml"
       - "poetry.lock"
+      - "Makefile"
   pull_request:
 
 jobs:
@@ -65,7 +66,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install --upgrade wheel
         poetry install
-        # pip install -e .
+        ruff --version
 
     - name: Lint
       run: make lint
