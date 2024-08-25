@@ -23,6 +23,12 @@ jobs:
         pip install --upgrade pip
         pip install setuptools wheel twine
 
+    - name: Install poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: false
+        virtualenvs-in-project: false
+
     - name: Build
       run: |
         make build
