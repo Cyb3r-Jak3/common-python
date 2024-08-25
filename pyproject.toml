@@ -29,8 +29,8 @@ repository = "https://github.com/Cyb3r-Jak3/common-python"
 
 
 [tool.poetry]
-name = "cyberjake "
-version = "0.2.0"
+name = "cyberjake"
+version = "0.2.0.post2"
 description = "Common Python utilities for Cyb3r-Jak3 projects"
 authors = ["Cyb3r-Jak3"]
 packages = [
