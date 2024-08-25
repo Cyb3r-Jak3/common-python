@@ -1,4 +1,4 @@
-""" text_utils
+"""text_utils
 
 Text utility functions
 """

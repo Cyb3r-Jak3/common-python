@@ -1,4 +1,4 @@
-""" Internal Utility functions"""
+"""Internal Utility functions"""
 
 from functools import wraps
 

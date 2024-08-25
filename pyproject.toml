@@ -45,7 +45,6 @@ python = ">=3.9"
 
 [tool.poetry.group.dev.dependencies]
 bandit = "^1.7.9"
-black = "^24.4.2"
 coverage = "^7.5.4"
 flake8 = "^7.1.0"
 pylint = "^3.2.5"
@@ -56,6 +55,7 @@ requests = "^2.32.3"
 sphinx = "^7.3.7"
 sphinx-rtd-theme = "^2.0.0"
 packaging = "^24.1"
+ruff = "^0.6.2"
 
 [build-system]
 requires = ["poetry-core", "setuptools>=61.0"]
