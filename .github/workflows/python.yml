@@ -66,13 +66,19 @@ jobs:
         python -m pip install --upgrade pip
         pip install --upgrade wheel
         poetry install
-        ruff --version
 
     - name: Lint
-      run: make lint
+      run: |
+       # make lint
+        poetry run ruff format --check --line-length 100 --target-version py310 cyberjake
+        poetry run pylint cyberjake
+        poetry run flake8 --max-line-length 100 --statistics --show-source --count cyberjake
+        poetry run bandit -r cyberjake
 
     - name: Test
-      run: make test
+      run: |
+        # make test
+        poetry run pytest --cov cyberjake tests/ -vv
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4
