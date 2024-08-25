@@ -25,7 +25,7 @@ jobs:
 
     - name: Build
       run: |
-          make build
+        make build
 
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
@@ -34,7 +34,5 @@ jobs:
       env:
         GEM_TOKEN: ${{ secrets.GEM_TOKEN }}
       run: |
-        make build
-        twine upload dist/*
         twine upload dist/* --repository-url https://push.fury.io/cyb3r-jak3 -u $GEM_TOKEN -p ""
 

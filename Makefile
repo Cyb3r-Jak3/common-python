@@ -31,18 +31,18 @@ check-dist:
 	twine check --strict dist/*
 
 lint:
-	poetry run ruff format --check --line-length 100 --target-version py310 cyberjake
-	poetry run pylint cyberjake
-	poetry run flake8 --max-line-length 100 --statistics --show-source --count cyberjake
-	poetry run bandit -r cyberjake
+	ruff format --check --line-length 100 --target-version py310 cyberjake
+	pylint cyberjake
+	flake8 --max-line-length 100 --statistics --show-source --count cyberjake
+	bandit -r cyberjake
 
 test:
-	poetry run pytest --cov cyberjake tests/ -vv
+	pytest --cov cyberjake tests/ -vv
 
 format:
-	poetry run ruff format --line-length 100 --target-version py310 cyberjake
+	ruff format --line-length 100 --target-version py310 cyberjake
 
 docs:
-	poetry run sphinx-apidoc -f -o docs/ cyberjake
+	sphinx-apidoc -f -o docs/ cyberjake
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html

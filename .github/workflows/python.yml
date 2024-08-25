@@ -69,16 +69,11 @@ jobs:
 
     - name: Lint
       run: |
-       # make lint
-        poetry run ruff format --check --line-length 100 --target-version py310 cyberjake
-        poetry run pylint cyberjake
-        poetry run flake8 --max-line-length 100 --statistics --show-source --count cyberjake
-        poetry run bandit -r cyberjake
+       make lint
 
     - name: Test
       run: |
-        # make test
-        poetry run pytest --cov cyberjake tests/ -vv
+        make test
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4
@@ -89,7 +84,11 @@ jobs:
         PYTHON: ${{ matrix.python-version }}
 
     - name: Build
-      run: make check-dist
+      run: |
+        # make check-dist
+        pip install wheel twine --quiet
+        poetry build
+        twine check --strict dist/*
 
   Clean-Install:
     runs-on: ubuntu-latest
