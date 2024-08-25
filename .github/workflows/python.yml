@@ -9,19 +9,23 @@ on:
     paths:
       - '**.py'
       - ".github/workflows/python.yml"
-      - "requirements.txt"
-      - "requirements-dev.txt"
+      - "pyproject.toml"
+      - "poetry.lock"
+      - "Makefile"
   pull_request:
 
 jobs:
   Lint:
     if: github.event_name == 'push'
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
 
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: [3.8, 3.9, '3.10', '3.11', 'pypy3.8', 'pypy3.9']
+        python-version: [ '3.9', '3.10', '3.11', '3.12', 'pypy3.9', 'pypy3.10' ]
         include:
           - os: ubuntu-latest
             path: ~/.cache/pip
@@ -42,26 +46,34 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
+    - name: Install poetry
+      uses: snok/install-poetry@v1
+      with:
+        virtualenvs-create: false
+        virtualenvs-in-project: false
+
     - name: Pip Cache
       uses: actions/cache@v4
       with:
         path: ${{ matrix.path }}
-        key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('**/requirements.txt', '**/requirements-dev.txt') }}
+        key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
         restore-keys: |
           ${{ runner.os }}-pip-${{ matrix.python-version }}
           ${{ runner.os }}-pip
 
     - name: Install Dependencies
       run: |
-        pip install --upgrade pip wheel
-        pip install -r requirements-dev.txt
-        pip install -e .
+        python -m pip install --upgrade pip
+        pip install --upgrade wheel
+        poetry install
 
     - name: Lint
-      run: make lint
+      run: |
+       make lint
 
     - name: Test
-      run: make test
+      run: |
+        make test
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4
@@ -70,9 +82,13 @@ jobs:
       env:
         OS: ${{ matrix.os }}
         PYTHON: ${{ matrix.python-version }}
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Build
-      run: make check-dist
+      run: |
+        pip install wheel twine --quiet
+        poetry build
+        twine check --strict dist/*
 
   Clean-Install:
     runs-on: ubuntu-latest
@@ -85,6 +101,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Build
-        run: make check-dist
+      - name: Install poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: false
+          virtualenvs-in-project: false
 
+      - name: Build
+        run: |
+          pip install wheel twine --quiet
+          poetry build
+          twine check --strict dist/*

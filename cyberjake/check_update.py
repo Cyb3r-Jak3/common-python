@@ -1,4 +1,5 @@
 """Script to check for available updates."""
+
 import json
 from ._utils import _check_required_modules, _INSTALLED_MODULES
 

@@ -1,4 +1,5 @@
 """Common code for discord bots"""
+
 import random
 import typing
 from ._utils import _check_required_modules, _INSTALLED_MODULES

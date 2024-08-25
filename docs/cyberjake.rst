@@ -44,6 +44,14 @@ cyberjake.make\_logger module
    :undoc-members:
    :show-inheritance:
 
+cyberjake.text\_utils module
+----------------------------
+
+.. automodule:: cyberjake.text_utils
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 
