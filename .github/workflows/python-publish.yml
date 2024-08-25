@@ -8,10 +8,14 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     permissions:
-        contents: read
-        packages: write
-        id-token: write
-    environment: release
+      contents: read
+      packages: write
+      id-token: write
+
+    environment:
+      name: release
+      url: https://pypi.org/p/cyberjake
+
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
@@ -25,9 +29,6 @@ jobs:
 
     - name: Install poetry
       uses: snok/install-poetry@v1
-      with:
-        virtualenvs-create: false
-        virtualenvs-in-project: false
 
     - name: Build
       run: |
@@ -35,6 +36,8 @@ jobs:
 
     - name: Publish to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        verbose: true
 
     - name: Build and publish to Fury.io
       env:
