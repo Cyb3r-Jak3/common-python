@@ -53,7 +53,7 @@ jobs:
         virtualenvs-in-project: false
 
     - name: Pip Cache
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: ${{ matrix.path }}
         key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
